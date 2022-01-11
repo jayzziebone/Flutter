@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "181358378021",
+    "project_id": "masolo-6033e",
+    "storage_bucket": "masolo-6033e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181358378021:android:8034bb45a230045a50d3cc",
+        "android_client_info": {
+          "package_name": "co.nerdzoncrack.masolo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181358378021-thq6dm1pjeko8gs9jmjs8kgf00a17fdk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkYH5SkZ_XuhYnhY4ZteLXHm3Nqvsh4d8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "181358378021-thq6dm1pjeko8gs9jmjs8kgf00a17fdk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
