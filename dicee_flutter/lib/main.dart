@@ -1,16 +1,13 @@
+import 'package:flutter/material.dart';
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-
 void main() {
-  return runApp(
-    MaterialApp(
+  return runApp(MaterialApp(
       home: Scaffold(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.blue,
         appBar: AppBar(
-          centerTitle: true,
           title: const Text('Dicee'),
-          backgroundColor: Colors.red,
+          backgroundColor: Colors.blue,
         ),
         body: DicePage(),
       ),
@@ -22,15 +19,15 @@ class DicePage extends StatefulWidget {
   const DicePage({Key? key}) : super(key: key);
 
   @override
-  _DicePageState createState() => _DicePageState();
+  State<DicePage> createState() => _DicePageState();
 }
 
 class _DicePageState extends State<DicePage> {
   int leftDiceNumber = 1;
   int rightDiceNumber = 1;
 
-  void updateDice(){
-    setState(() {
+  void changeDiceNumber(){
+    setState((){
       leftDiceNumber = Random().nextInt(6) + 1;
       rightDiceNumber = Random().nextInt(6) + 1;
     });
@@ -45,8 +42,8 @@ class _DicePageState extends State<DicePage> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
-                onPressed: () {
-                    updateDice();
+                onPressed: (){
+                  changeDiceNumber();
                 },
                 child: Image.asset('images/dice$leftDiceNumber.png'),
               ),
@@ -57,7 +54,7 @@ class _DicePageState extends State<DicePage> {
               padding: const EdgeInsets.all(8.0),
               child: TextButton(
                 onPressed: () {
-                    updateDice();
+                  changeDiceNumber();
                 },
                 child: Image.asset('images/dice$rightDiceNumber.png'),
               ),
@@ -68,3 +65,6 @@ class _DicePageState extends State<DicePage> {
     );
   }
 }
+
+
+

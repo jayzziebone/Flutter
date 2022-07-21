@@ -1,26 +1,25 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MaterialApp(
-    home: Scaffold(
-      appBar: AppBar(
-        title: Center(
-          child: Text('I Am Poor'),
-        ),
-        titleTextStyle: TextStyle(
-            color: Colors.black,
-            fontSize: 30,
-            fontWeight: FontWeight.bold
-        ),
-        backgroundColor: Colors.yellow[100],
-      ),
-      body: Center(
-        child: Image(
-            image: AssetImage('images/unnamed.jpg'),
-        ),
-      ),
-      backgroundColor: Colors.white,
-    )
-  ));
+void main(){
+  runApp(MyApp());
+}
 
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("I Am Poor"),
+          backgroundColor: Colors.amberAccent,
+        ),
+        body: Center(
+          child: Image(image: AssetImage("images/i_am_poor.jpg"),),
+        ),
+        backgroundColor: Colors.grey[400],
+      ),
+    );
+  }
+}
