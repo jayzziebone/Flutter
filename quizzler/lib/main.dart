@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'quiz_brain.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 
 void main() => runApp(Quizzler());
 
@@ -27,56 +25,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> scoreKeeper = [];
-  QuizBrain quizBrain = QuizBrain();
-  int rightAnswers = 0;
-  int wrongAnswers = 0;
-
-  void checkAnswer(bool userPickedAnswer) {
-    bool correctAnswer = quizBrain.getQuestionAnswer();
-    setState(() {
-      if (userPickedAnswer == correctAnswer) {
-        scoreKeeper.add(const Icon(
-          Icons.check,
-          color: Colors.green,
-        ));
-        rightAnswers++;
-      } else {
-        scoreKeeper.add(const Icon(
-          Icons.close,
-          color: Colors.red,
-        ));
-        wrongAnswers++;
-      }
-      if (quizBrain.isFinished()) {
-        AlertType myAlert;
-        if (rightAnswers / (rightAnswers + wrongAnswers) * 100 > 50) {
-          myAlert = AlertType.success;
-        } else {
-          myAlert = AlertType.error;
-        }
-        Alert(
-          context: context,
-          type: myAlert,
-          title: "END OF THE GAME",
-          desc:
-              "You've reached the end of the game. Your score is $rightAnswers right and $wrongAnswers wrong answers.",
-          buttons: [
-            DialogButton(
-              child: const Text("RESET"),
-              onPressed: () => Navigator.pop(context),
-            ),
-          ],
-        ).show();
-        quizBrain.resetGame();
-        scoreKeeper.clear();
-        rightAnswers = 0;
-        wrongAnswers = 0;
-      } else {
-        quizBrain.nextQuestion();
-      }
-    });
-  }
+  List<Widget> scoreKeeper = [];
 
   @override
   Widget build(BuildContext context) {
@@ -84,15 +33,15 @@ class _QuizPageState extends State<QuizPage> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Expanded(
+        const Expanded(
           flex: 5,
           child: Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.getQuestionText(),
+                'This is where the question text will go.',
                 textAlign: TextAlign.center,
-                style: const TextStyle(
+                style: TextStyle(
                   fontSize: 25.0,
                   color: Colors.white,
                 ),
@@ -103,40 +52,45 @@ class _QuizPageState extends State<QuizPage> {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Container(
-              color: Colors.green,
-              child: TextButton(
-                onPressed: () {
-                  checkAnswer(true);
-                },
-                child: const Text(
-                  'True',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
+            child: TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.green)
+              ),
+              child: const Text(
+                'True',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
                 ),
               ),
+              onPressed: () {
+                //The user picked true.
+                setState((){
+                  scoreKeeper.add(
+                      const Icon(Icons.check, color: Colors.green,)
+                  );
+                });
+              },
             ),
           ),
         ),
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Container(
-              color: Colors.red,
-              child: TextButton(
-                onPressed: () {
-                  checkAnswer(false);
-                },
-                child: const Text(
-                  'False',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.white,
-                  ),
+            child: TextButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.red),
+              ),
+              child: const Text(
+                'False',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  color: Colors.white,
                 ),
               ),
+              onPressed: () {
+                //The user picked false.
+              },
             ),
           ),
         ),
